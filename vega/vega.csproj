@@ -8,11 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+  </ItemGroup> 
+
+  <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <!-- Files] not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
   </ItemGroup>
 
