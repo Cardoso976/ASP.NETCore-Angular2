@@ -1,0 +1,11 @@
+{
+	"modelId": 1,
+	"isRegistered": true,
+	"contact": {
+		"name": "name",
+		"phone": "phone",
+		"email": "email"
+	},
+	"lastUpdate": "2000-01-01",
+	"features": [1,2,3]
+}
