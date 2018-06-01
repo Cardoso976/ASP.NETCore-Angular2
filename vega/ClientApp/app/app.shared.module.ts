@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { ToastyModule } from 'ng2-toasty';
 
 import { VehicleService } from './services/vehicle.service';
 
@@ -24,6 +25,7 @@ import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.com
         HomeComponent
     ],
     imports: [
+        ToastyModule.forRoot(),
         CommonModule,
         HttpModule,
         FormsModule,
