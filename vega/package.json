@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "@types/underscore": "^1.8.8",
+    "font-awesome": "^4.7.0",
     "ng2-toasty": "^4.0.3",
     "raven-js": "^3.25.2",
     "underscore": "^1.9.1"
