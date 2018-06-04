@@ -44,8 +44,8 @@ export class VehicleFormComponent implements OnInit {
 
   ngOnInit() {
     var sources = [
-      this.vehicleService.getFeatures(),
-      this.vehicleService.getMakes()
+      this.vehicleService.getMakes(),
+      this.vehicleService.getFeatures()      
     ];
 
     if(this.vehicle.id)
@@ -121,5 +121,4 @@ export class VehicleFormComponent implements OnInit {
         });
     }
   }
-
 }
