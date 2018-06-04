@@ -16,7 +16,7 @@ import * as _ from 'underscore';
 export class VehicleFormComponent implements OnInit {
   makes: any [] = [];
   models: any [] = [];
-  features: any;
+  features: any[] = [];
   vehicle: SaveVehicle = {
     id: 0,
     makeId: 0,
