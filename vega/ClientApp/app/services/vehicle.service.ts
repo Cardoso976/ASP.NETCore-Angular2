@@ -1,24 +1,24 @@
 import { SaveVehicle } from './../models/vehicle';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map'
+import { Http } from '@angular/http'; 
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class VehicleService {
 
   constructor(private http: Http) { }
-  
-  getFeatures(){
+
+  getFeatures() {
     return this.http.get('/api/features')
       .map(res => res.json());
   }
 
-  getMakes(){
+  getMakes() {
     return this.http.get('/api/makes')
       .map(res => res.json());
-  }  
+  }
 
-  create(vehicle: any){
+  create(vehicle: any) {
     return this.http.post('/api/vehicles', vehicle)
       .map(res => res.json());
   }
@@ -33,7 +33,7 @@ export class VehicleService {
       .map(res => res.json());
   }
 
-  delete(id: any){
+  delete(id: any) {
     return this.http.delete('/api/vehicles/' + id)
       .map(res => res.json());
   }

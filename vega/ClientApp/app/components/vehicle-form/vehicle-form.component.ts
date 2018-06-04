@@ -1,12 +1,11 @@
+import * as _ from 'underscore'; 
 import { SaveVehicle, Vehicle } from './../../models/vehicle';
+import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VehicleService } from './../../services/vehicle.service';
 import { Component, OnInit } from '@angular/core';
-import { ToastyService } from 'ng2-toasty';
-import { ActivatedRoute, Router } from '@angular/router';
-import { IfObservable } from 'rxjs/observable/IfObservable';
-import { Observable } from 'rxjs/Observable';
-import "rxjs/add/Observable/forkJoin";
-import * as _ from 'underscore';
+import { ToastyService } from "ng2-toasty";
+import 'rxjs/add/Observable/forkJoin';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -14,9 +13,9 @@ import * as _ from 'underscore';
   styleUrls: ['./vehicle-form.component.css']
 })
 export class VehicleFormComponent implements OnInit {
-  makes: any [] = [];
-  models: any [] = [];
-  features: any[] = [];
+  makes: any[] = []; 
+  models: any[]= [];
+  features: any[]= [];
   vehicle: SaveVehicle = {
     id: 0,
     makeId: 0,
@@ -26,7 +25,7 @@ export class VehicleFormComponent implements OnInit {
     contact: {
       name: '',
       email: '',
-      phone: ''
+      phone: '',
     }
   };
 
@@ -34,33 +33,32 @@ export class VehicleFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private vehicleService: VehicleService,
-    private toastyService: ToastyService) { 
+    private toastyService: ToastyService) {
 
       route.params.subscribe(p => {
         this.vehicle.id = +p['id'];
       });
-
     }
 
   ngOnInit() {
     var sources = [
       this.vehicleService.getMakes(),
-      this.vehicleService.getFeatures()      
+      this.vehicleService.getFeatures(),
     ];
 
-    if(this.vehicle.id)
+    if (this.vehicle.id)
       sources.push(this.vehicleService.getVehicle(this.vehicle.id));
 
     Observable.forkJoin(sources).subscribe(data => {
       this.makes = data[0];
       this.features = data[1];
-      
-      if(this.vehicle.id){
+
+      if (this.vehicle.id) {
         this.setVehicle(data[2]);
         this.populateModels();
-      }        
+      }
     }, err => {
-      if(err.status == 404)
+      if (err.status == 404)
         this.router.navigate(['/home']);
     });
   }
@@ -72,49 +70,50 @@ export class VehicleFormComponent implements OnInit {
     this.vehicle.isRegistered = v.isRegistered;
     this.vehicle.contact = v.contact;
     this.vehicle.features = _.pluck(v.features, 'id');
-  }
+  } 
 
-  onMakeChange(){ 
+  onMakeChange() {
     this.populateModels();
+
     delete this.vehicle.modelId;
   }
 
   private populateModels() {
     var selectedMake = this.makes.find(m => m.id == this.vehicle.makeId);
-    this.models = selectedMake ? selectedMake.models : [];        
+    this.models = selectedMake ? selectedMake.models : [];
   }
 
-  onFeatureToggle(featureId: any, $event: any){
-    if ($event.target.checked) {
+  onFeatureToggle(featureId: any, $event: any) {
+    if ($event.target.checked)
       this.vehicle.features.push(featureId);
-    } else {
+    else {
       var index = this.vehicle.features.indexOf(featureId);
       this.vehicle.features.splice(index, 1);
     }
   }
 
-  submit(){
-    if (this.vehicle.id){
+  submit() {
+    if (this.vehicle.id) {
       this.vehicleService.update(this.vehicle)
         .subscribe(x => {
           this.toastyService.success({
-            title: 'Sucess',
-            msg: 'The vehicle was sucessfully update.',
+            title: 'Success', 
+            msg: 'The vehicle was sucessfully updated.',
             theme: 'bootstrap',
             showClose: true,
             timeout: 5000
           });
         });
-    } 
+    }
     else {
       this.vehicleService.create(this.vehicle)
-      .subscribe(
-        x => console.log(x));      
-    }    
+        .subscribe(x => console.log(x));
+
+    }
   }
 
-  delete(){
-    if(confirm("Are you sure?")){
+  delete() {
+    if (confirm("Are you sure?")) {
       this.vehicleService.delete(this.vehicle.id)
         .subscribe(x => {
           this.router.navigate(['/home']);

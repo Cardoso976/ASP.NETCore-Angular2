@@ -1,4 +1,4 @@
-import { AppErrorHandler } from './app.erro-handler';
+import { AppErrorHandler } from './app.error-handler';
 import { ErrorHandler } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
