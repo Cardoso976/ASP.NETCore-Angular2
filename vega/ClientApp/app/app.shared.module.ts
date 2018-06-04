@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ToastyModule } from 'ng2-toasty';
+import * as Raven from 'raven-js';
 
 import { VehicleService } from './services/vehicle.service';
 
@@ -16,6 +17,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
 
+Raven.config('https://93ff563295404764a30b7451472997b9@sentry.io/1218881').install();
 
 @NgModule({
     declarations: [

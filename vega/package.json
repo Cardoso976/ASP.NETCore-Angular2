@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "test": "karma start ClientApp/test/karma.conf.js"
+    "test": "karma start ClientApp/test/karma.conf.js",
+    "build": "webpack --config webpack.config.vendor.js"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.5",
@@ -62,6 +63,7 @@
     "zone.js": "0.8.12"
   },
   "dependencies": {
-    "ng2-toasty": "^4.0.3"
+    "ng2-toasty": "^4.0.3",
+    "raven-js": "^3.25.2"
   }
 }
