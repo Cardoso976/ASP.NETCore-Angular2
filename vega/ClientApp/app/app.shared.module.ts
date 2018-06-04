@@ -36,6 +36,7 @@ Raven.config('https://93ff563295404764a30b7451472997b9@sentry.io/1218881').insta
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'vehicles/new', component: VehicleFormComponent},
+            { path: 'vehicles/:id', component: VehicleFormComponent},
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
