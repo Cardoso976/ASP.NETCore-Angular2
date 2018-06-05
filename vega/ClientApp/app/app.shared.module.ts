@@ -17,6 +17,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 Raven.config('https://93ff563295404764a30b7451472997b9@sentry.io/1218881').install();
 
@@ -28,7 +29,8 @@ Raven.config('https://93ff563295404764a30b7451472997b9@sentry.io/1218881').insta
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        VehicleListComponent
+        VehicleListComponent,
+        PaginationComponent
     ],
     imports: [
         ToastyModule.forRoot(),
