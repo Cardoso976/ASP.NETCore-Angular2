@@ -1,6 +1,7 @@
+import { PhotoService } from './../../services/photo.service';
 import { ToastyService } from 'ng2-toasty';
 import { VehicleService } from '../../services/vehicle.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,13 +10,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./view-vehicle.component.css']
 })
 export class ViewVehicleComponent implements OnInit {
+  @ViewChild('fileInput') fileInput : any;
   vehicle: any;
   vehicleId: number = 0;
+  photos: any[] = [];
 
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
     private toasty: ToastyService,
+    private photoService: PhotoService,
     private vehicleService: VehicleService) { 
 
     route.params.subscribe(p => {
@@ -28,6 +32,9 @@ export class ViewVehicleComponent implements OnInit {
   }
 
   ngOnInit() { 
+    this.photoService.getPhotos(this.vehicleId)
+      .subscribe(photos => this.photos = photos);
+
     this.vehicleService.getVehicle(this.vehicleId)
       .subscribe(
         v => this.vehicle = v,
@@ -48,4 +55,11 @@ export class ViewVehicleComponent implements OnInit {
     }
   }
 
+  uploadPhoto() {
+      var nativeElement: any = this.fileInput.nativeElement;
+      this.photoService.upload(this.vehicleId, nativeElement.files[0])
+        .subscribe(photo => {
+          this.photos.push(photo);
+        });
+  }
 }
