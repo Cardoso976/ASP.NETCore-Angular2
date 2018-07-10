@@ -1,3 +1,4 @@
+import { AuthService } from './auth/auth.service';
 import { AppErrorHandler } from './app.error-handler';
 import { ErrorHandler } from '@angular/core';
 import { NgModule } from '@angular/core';
@@ -56,6 +57,7 @@ Raven.config('https://93ff563295404764a30b7451472997b9@sentry.io/1218881').insta
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
         { provide: BrowserXhr, useClass: BrowserXhrWithProgress },
+        AuthService,
         VehicleService,
         PhotoService,
         ProgressService

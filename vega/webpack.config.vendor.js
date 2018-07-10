@@ -25,6 +25,9 @@ const nonTreeShakableModules = [
     'ng2-toasty/bundles/style-bootstrap.css',
     'raven-js',
     'underscore',
+    'angular2-jwt',
+    'auth0-lock',
+    'auth0-js',
     'jquery',
 ];
 const allModules = treeShakableModules.concat(nonTreeShakableModules);
